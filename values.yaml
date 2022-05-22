@@ -1,13 +1,13 @@
 ---
 # Number of nifi nodes
-replicaCount: 1
+replicaCount: 2
 
 ## Set default image, imageTag, and imagePullPolicy.
 ## ref: https://hub.docker.com/r/apache/nifi/
 ##
 image:
   repository: apache/nifi
-  tag: "1.14.0"
+  tag: "1.16.1"
   pullPolicy: "IfNotPresent"
 
   ## Optionally specify an imagePullSecret.
@@ -162,7 +162,7 @@ headless:
 
 # ui service
 service:
-  type: ClusterIP
+  type: LoadBalancer
   httpsPort: 8443
   # nodePort: 30236
   annotations: {}
@@ -347,7 +347,7 @@ ca:
 zookeeper:
   ## If true, install the Zookeeper chart
   ## ref: https://github.com/bitnami/charts/blob/master/bitnami/zookeeper/values.yaml
-  enabled: true
+  enabled: false
   ## If the Zookeeper Chart is disabled a URL and port are required to connect
   url: ""
   port: 2181
@@ -358,7 +358,7 @@ zookeeper:
 # ------------------------------------------------------------------------------
 registry:
   ## If true, install the Nifi registry
-  enabled: false
+  enabled: true
   url: ""
   port: 80
   ## Add values for the nifi-registry here
